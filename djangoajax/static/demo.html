@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd"
+    >
+<html lang="en">
+<head>
+    <title>Ajax Contact List</title>
+    <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.4.custom.css" rel="stylesheet" />	
+		<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.8.4.custom.min.js"></script>
+		<script type="text/javascript">
+                    $(function(){
+                        $.getJSON('/contacts/',
+                                function(data){
+                                    $.each(data,function(index,item){                
+                                        tr = '<tr><td>'+ item.fields.name+'</td>';
+                                        tr += '<td>' + item.fields.phone+'</td>';
+                                        tr += '<td>' + item.fields.address+'</td>';
+                                        tr += '<td>' + item.fields.post_code+'</td>';
+                                        tr += '</tr>';
+                                        $('#contact_table').children('tbody').append(tr);                                                    });
+                                });
+                    });
+                </script>
+</head>
+<body>
+    <div id='contacts'>
+        <table id='contact_table' border=1>
+            <thead>
+                <td>name</td>
+                <td>phone</td>
+                <td>address</td>
+                <td>post code</td>
+            </thead>
+            <tbody></tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+</body>
+</html>
